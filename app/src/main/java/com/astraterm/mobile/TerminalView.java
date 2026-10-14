@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.util.AttributeSet;
 import android.view.View;
 import java.util.ArrayList;
 
@@ -17,7 +18,11 @@ public final class TerminalView extends View {
     private int maxLines = 1500;
 
     public TerminalView(Context context) {
-        super(context);
+        this(context, null);
+    }
+
+    public TerminalView(Context context, AttributeSet attrs) {
+        super(context, attrs);
         setFocusable(true);
         setFocusableInTouchMode(true);
         textSize = 14f * getResources().getDisplayMetrics().scaledDensity;
@@ -37,7 +42,8 @@ public final class TerminalView extends View {
             if (c == '\n') { lines.add(current.toString()); current.setLength(0); }
             else if (c == '\b' || c == 127) { if (current.length() > 0) current.deleteCharAt(current.length()-1); }
             else if (c == 27) { /* Minimal renderer: ignore ANSI escape introducer. */ }
-            else if (c >= 32 || c == '\t') current.append(c == '\t' ? "    " : c);
+            else if (c == '\t') current.append("    ");
+            else if (c >= 32) current.append(c);
         }
         while (lines.size() > maxLines) lines.remove(0);
         invalidate();
