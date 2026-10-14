@@ -69,7 +69,7 @@
                 android:imeOptions="actionDone"
                 android:hint="Enter command…"
                 android:textColor="#E5EDF5"
-                android:hintTextColor="#7D8B9A"
+                android:textColorHint="#7D8B9A"
                 android:backgroundTint="#35E6A5"
                 android:inputType="textNoSuggestions"
                 android:paddingHorizontal="10dp" />
