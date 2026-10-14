@@ -1,7 +1,8 @@
 #include <jni.h>
 #include <cerrno>
 #include <cstring>
-#include <cstdlib>
+#include <stdlib.h>
+#include <string.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>
