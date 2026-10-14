@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#10151C">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="14dp"
+        android:background="#171F29">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ASTRA / TERMINAL"
+            android:textColor="#35E6A5"
+            android:textStyle="bold"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONNECTING"
+            android:textColor="#77BCE8"
+            android:textSize="10sp" />
+    </LinearLayout>
+    <com.astraterm.mobile.TerminalView
+        android:id="@+id/terminal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#171F29"
+        android:padding="8dp">
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:scrollbars="none">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <Button android:id="@+id/keyCtrl" android:layout_width="52dp" android:layout_height="36dp" android:minWidth="0dp" android:text="CTRL" android:textSize="10sp" />
+                <Button android:id="@+id/keyEsc" android:layout_width="52dp" android:layout_height="36dp" android:minWidth="0dp" android:text="ESC" android:textSize="10sp" />
+                <Button android:id="@+id/keyTab" android:layout_width="52dp" android:layout_height="36dp" android:minWidth="0dp" android:text="TAB" android:textSize="10sp" />
+                <Button android:id="@+id/keyUp" android:layout_width="44dp" android:layout_height="36dp" android:minWidth="0dp" android:text="↑" />
+                <Button android:id="@+id/keyDown" android:layout_width="44dp" android:layout_height="36dp" android:minWidth="0dp" android:text="↓" />
+                <Button android:id="@+id/keyLeft" android:layout_width="44dp" android:layout_height="36dp" android:minWidth="0dp" android:text="←" />
+                <Button android:id="@+id/keyRight" android:layout_width="44dp" android:layout_height="36dp" android:minWidth="0dp" android:text="→" />
+            </LinearLayout>
+        </HorizontalScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <EditText
+                android:id="@+id/commandInput"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:imeOptions="actionDone"
+                android:hint="Enter command…"
+                android:textColor="#E5EDF5"
+                android:hintTextColor="#7D8B9A"
+                android:backgroundTint="#35E6A5"
+                android:inputType="textNoSuggestions"
+                android:paddingHorizontal="10dp" />
+            <Button
+                android:id="@+id/send"
+                android:layout_width="64dp"
+                android:layout_height="44dp"
+                android:minWidth="0dp"
+                android:text="SEND"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
