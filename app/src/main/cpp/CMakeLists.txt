@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.22.1)
+project(astraterm LANGUAGES CXX)
+add_library(astraterm SHARED pty_bridge.cpp)
+target_compile_features(astraterm PRIVATE cxx_std_17)
+target_compile_options(astraterm PRIVATE -Os -fvisibility=hidden -Wall -Wextra)
+target_link_libraries(astraterm log)
