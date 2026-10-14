@@ -34,6 +34,9 @@ jobs:
           cache-disabled: true
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          # The legacy SDK package 'tools' was removed and makes setup-android fail.
+          packages: platform-tools
       - name: Accept Android SDK licenses
         shell: bash
         run: |
