@@ -23,7 +23,7 @@ public final class MainActivity extends Activity {
         System.loadLibrary("astraterm");
     }
 
-    private static native int nativeStartShell(String home);
+    private static native int nativeStartShell(String home, String temp);
 
     private TerminalView terminal;
     private TextView status;
