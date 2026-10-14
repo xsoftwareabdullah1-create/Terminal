@@ -28,10 +28,16 @@ jobs:
         uses: android-actions/setup-android@v3
       - name: Install SDK and NDK
         run: sdkmanager "platforms;android-35" "build-tools;35.0.0" "ndk;27.2.12479018" "cmake;3.22.1"
+      - name: Print build environment
+        run: |
+          java -version
+          gradle --version
+          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
+          sdkmanager --list_installed | grep -E "platforms;android-35|build-tools;35.0.0|ndk;27.2.12479018|cmake;3.22.1" || true
       - name: Build debug APK
-        run: gradle --no-daemon assembleDebug
+        run: gradle --no-daemon --stacktrace assembleDebug
       - name: Run available unit tests
-        run: gradle --no-daemon testDebugUnitTest
+        run: gradle --no-daemon --stacktrace testDebugUnitTest
       - name: Verify APK and report size/checksum
         shell: bash
         run: |
