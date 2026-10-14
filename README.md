@@ -1,29 +1,74 @@
 # AstraTerm
 
-A lightweight Android terminal prototype using Java UI, a C++ JNI PTY bridge, and Android's /system/bin/sh.
+**A lightweight Android terminal experiment inspired by Termux.** AstraTerm combines a native Java interface with a small C++/JNI pseudo-terminal bridge. It launches Android's own `/system/bin/sh` without root.
 
-## Status
-This is an initial implementation scaffold intended to build through GitHub Actions. It launches the Android system shell in a pseudo-terminal; it is not a full Linux distribution or Termux replacement. The command set depends on Android version. No root access or package manager is provided.
+> **Project status:** early prototype. It is not yet a drop-in Termux replacement and does not include a Linux distribution or Termux's package manager.
 
-## Build APK
-1. Open the Actions tab and select Android APK.
-2. Run the workflow (or push a commit to main).
-3. Download the AstraTerm-debug-apk artifact from a successful run.
+## Features
 
-## Local build
-Install JDK 17 and Android SDK Platform 35 / Build Tools 35.0.0 / NDK 27.2.12479018, then run ./gradlew assembleDebug. This repository will include a Gradle wrapper in a later setup step if available.
+- Dark, landscape-friendly terminal-style screen with monospace output and a visible cursor
+- Java Android UI with a native C++17 PTY bridge
+- Interactive Android system shell
+- On-screen CTRL, ESC, TAB, and arrow-key shortcuts
+- Private app home directory
+- GitHub Actions build that uploads a debug APK artifact
+- No root permission requested
 
-## Architecture
-- Java Activity handles lifecycle, input, PTY I/O, and session cleanup.
-- C++17 JNI opens a PTY with POSIX PTY APIs, starts /system/bin/sh, and exposes the master descriptor.
-- A custom Canvas view displays monospace output and a visible cursor.
-- XML is used for the initial screen layout.
+## Screens and architecture
 
-## Limitations
-- The renderer is a lightweight terminal display, not a complete VT100/xterm emulator. ANSI handling, full-screen apps, advanced cursor addressing, and terminal resize support are limited.
-- Commands are Android system utilities; availability varies by device.
-- No bundled BusyBox, apt ecosystem, multiple concurrent sessions, or full scrollback selection is included yet.
-- APK size and device-level runtime behavior must be measured after a successful workflow/device test; no size or install test is claimed in advance.
+- **UI:** Java, Android Views, XML layout, and a custom Canvas terminal view
+- **Native layer:** C++17 and JNI
+- **Shell:** Android `/system/bin/sh`
+- **Build:** Android Gradle Plugin, Gradle, Android SDK, NDK, and CMake
 
-## Security
-Runs without root. Files are confined by Android app sandbox except where Android system commands permit access. No broad storage permissions are requested.
+## Download the APK
+
+1. Open the repository's [Actions page](https://github.com/xsoftwareabdullah1-create/Terminal/actions).
+2. Open the latest **AstraTerm Android CI** run.
+3. Wait for every step to show a green check mark.
+4. Under **Artifacts**, download **AstraTerm-debug-apk**.
+5. Extract the ZIP and install `app-debug.apk` on a compatible Android device.
+
+If the run is red, open the failed step and read the first actual `FAILURE`, `error:`, or `What went wrong` message. A failed workflow does not produce a verified APK artifact.
+
+## Build in Termux
+
+A local Android build requires a compatible JDK, Gradle, Android SDK Platform 35, Build Tools 35.0.0, NDK 27.2.12479018, and CMake 3.22.1. Android SDK setup on a phone can be storage-intensive; GitHub Actions is the recommended build route for this repository.
+
+This repository currently uses the Gradle installation supplied by CI and **does not include the Gradle Wrapper**. Therefore, do not run `./gradlew` unless wrapper files are added later. With Gradle 8.9 and the Android SDK configured, build from the repository root using:
+
+```sh
+gradle --no-daemon clean assembleDebug
+```
+
+The output should be at:
+
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+## Requirements and compatibility
+
+- Android 10 (API 29) or newer
+- ARM64 (`arm64-v8a`) build only
+- Android system shell; available commands vary by device
+
+## Current limitations
+
+AstraTerm is a prototype, not a complete VT100/xterm emulator. Full ANSI/CSI parsing, terminal resizing, alternate screen buffers, mouse support, full-screen TUI compatibility, robust scrollback selection, multiple sessions, and a bundled package ecosystem are not implemented. Android's shell environment is not a general-purpose Linux distribution, and commands such as `apt` are not included.
+
+The APK must pass CI and be installed/tested on a real device before release readiness or final APK size can be claimed.
+
+## Permissions and security
+
+AstraTerm does not request root access or broad shared-storage permissions. The shell runs under the app's Android UID and is subject to Android's application sandbox. Do not assume this provides the same packages or filesystem access as Termux.
+
+## Contributing / reporting a build failure
+
+Please include:
+- the failed workflow run link,
+- the exact failing step,
+- the first relevant error message and surrounding log lines,
+- the Android version and device architecture for runtime issues.
+
+See [GitHub Actions](https://github.com/xsoftwareabdullah1-create/Terminal/actions) for build status.
