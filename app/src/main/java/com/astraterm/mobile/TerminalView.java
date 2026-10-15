@@ -36,7 +36,7 @@ public final class TerminalView extends View {
         textSize = 14f * getResources().getDisplayMetrics().scaledDensity;
         paint.setTypeface(Typeface.MONOSPACE);
         paint.setTextSize(textSize);
-        paint.setColor(0xFFE5EDF5);
+        paint.setColor(0xFF202124);
         cellWidth = Math.max(1f, paint.measureText("M"));
         lines.add("AstraTerm 0.1.0 — Android system shell");
         lines.add("No root required. Type commands below.");
@@ -113,10 +113,10 @@ public final class TerminalView extends View {
     @Override
     protected synchronized void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawColor(0xFF10151C);
+        canvas.drawColor(0xFFF8F9FA);
         paint.setTypeface(Typeface.MONOSPACE);
         paint.setTextSize(textSize);
-        paint.setColor(0xFFE5EDF5);
+        paint.setColor(0xFF202124);
 
         float lineHeight = textSize * 1.45f;
         int capacity = Math.max(1, (int) (getHeight() / lineHeight));
@@ -136,7 +136,7 @@ public final class TerminalView extends View {
         canvas.clipRect(0, y - lineHeight, getWidth(), y + 4);
         canvas.drawText(current.toString(), 10, y, paint);
         float cursorX = 10 + paint.measureText(current.toString());
-        paint.setColor(0xFF35E6A5);
+        paint.setColor(0xFF4285F4);
         canvas.drawRect(cursorX, y - textSize + 3, cursorX + cellWidth, y + 3, paint);
         canvas.restore();
     }
