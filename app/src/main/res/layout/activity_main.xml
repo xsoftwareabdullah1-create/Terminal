@@ -3,63 +3,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#10151C">
+    android:background="#F8F9FA">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:gravity="center_vertical"
-        android:paddingHorizontal="14dp"
-        android:background="#171F29">
+        android:paddingStart="18dp"
+        android:paddingEnd="16dp"
+        android:background="#FFFFFF"
+        android:elevation="2dp">
+
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="ASTRA / TERMINAL"
-            android:textColor="#35E6A5"
+            android:text="●"
+            android:textColor="#4285F4"
+            android:textSize="18sp"
+            android:fontFamily="sans" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="AstraTerm"
+            android:textColor="#202124"
             android:textStyle="bold"
-            android:textSize="14sp" />
+            android:textSize="19sp"
+            android:fontFamily="sans" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:background="#E8F0FE"
             android:text="CONNECTING"
-            android:textColor="#77BCE8"
-            android:textSize="10sp" />
+            android:textColor="#1967D2"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:fontFamily="sans" />
     </LinearLayout>
+
     <com.astraterm.mobile.TerminalView
         android:id="@+id/terminal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_margin="12dp"
+        android:background="#FFFFFF"
+        android:elevation="1dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#171F29"
-        android:padding="8dp">
+        android:background="#FFFFFF"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="8dp"
+        android:elevation="4dp">
+
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:scrollbars="none">
+            android:layout_height="42dp"
+            android:scrollbars="none"
+            android:fillViewport="false">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-                <Button android:id="@+id/keyCtrl" android:layout_width="52dp" android:layout_height="36dp" android:minWidth="0dp" android:text="CTRL" android:textSize="10sp" />
-                <Button android:id="@+id/keyEsc" android:layout_width="52dp" android:layout_height="36dp" android:minWidth="0dp" android:text="ESC" android:textSize="10sp" />
-                <Button android:id="@+id/keyTab" android:layout_width="52dp" android:layout_height="36dp" android:minWidth="0dp" android:text="TAB" android:textSize="10sp" />
-                <Button android:id="@+id/keyUp" android:layout_width="44dp" android:layout_height="36dp" android:minWidth="0dp" android:text="↑" />
-                <Button android:id="@+id/keyDown" android:layout_width="44dp" android:layout_height="36dp" android:minWidth="0dp" android:text="↓" />
-                <Button android:id="@+id/keyLeft" android:layout_width="44dp" android:layout_height="36dp" android:minWidth="0dp" android:text="←" />
+
+                <Button android:id="@+id/keyCtrl" android:layout_width="58dp" android:layout_height="36dp" android:minWidth="0dp" android:layout_marginEnd="5dp" android:text="CTRL" android:textSize="10sp" android:textAllCaps="false" />
+                <Button android:id="@+id/keyEsc" android:layout_width="54dp" android:layout_height="36dp" android:minWidth="0dp" android:layout_marginEnd="5dp" android:text="ESC" android:textSize="10sp" android:textAllCaps="false" />
+                <Button android:id="@+id/keyTab" android:layout_width="54dp" android:layout_height="36dp" android:minWidth="0dp" android:layout_marginEnd="5dp" android:text="TAB" android:textSize="10sp" android:textAllCaps="false" />
+                <Button android:id="@+id/keyUp" android:layout_width="44dp" android:layout_height="36dp" android:minWidth="0dp" android:layout_marginEnd="5dp" android:text="↑" />
+                <Button android:id="@+id/keyDown" android:layout_width="44dp" android:layout_height="36dp" android:minWidth="0dp" android:layout_marginEnd="5dp" android:text="↓" />
+                <Button android:id="@+id/keyLeft" android:layout_width="44dp" android:layout_height="36dp" android:minWidth="0dp" android:layout_marginEnd="5dp" android:text="←" />
                 <Button android:id="@+id/keyRight" android:layout_width="44dp" android:layout_height="36dp" android:minWidth="0dp" android:text="→" />
             </LinearLayout>
         </HorizontalScrollView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal"
             android:gravity="center_vertical">
+
             <EditText
                 android:id="@+id/commandInput"
                 android:layout_width="0dp"
@@ -67,19 +109,26 @@
                 android:layout_weight="1"
                 android:singleLine="true"
                 android:imeOptions="actionDone"
-                android:hint="Enter command…"
-                android:textColor="#E5EDF5"
-                android:textColorHint="#7D8B9A"
-                android:backgroundTint="#35E6A5"
+                android:hint="Enter command"
+                android:textColor="#202124"
+                android:textColorHint="#80868B"
+                android:backgroundTint="#4285F4"
                 android:inputType="textNoSuggestions"
-                android:paddingHorizontal="10dp" />
+                android:paddingHorizontal="12dp"
+                android:fontFamily="monospace" />
+
             <Button
                 android:id="@+id/send"
-                android:layout_width="64dp"
+                android:layout_width="76dp"
                 android:layout_height="44dp"
+                android:layout_marginStart="8dp"
                 android:minWidth="0dp"
-                android:text="SEND"
-                android:textSize="11sp" />
+                android:text="Run"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:backgroundTint="#1A73E8"
+                android:fontFamily="sans" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
